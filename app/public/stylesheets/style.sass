@@ -1,6 +1,12 @@
 body
-  padding: 50px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+    height: 500px
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+    display: grid
+    grid-template-areas: 'task  queue' 'task memory'
+    .task_panel
+        grid-area: task
+    .queue_panel
+        grid-area: queue
+    .memory_panel
+        grid-area: memory
 
-a
-  color: #00B7FF

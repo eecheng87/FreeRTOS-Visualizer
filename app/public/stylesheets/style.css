@@ -1,8 +1,13 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-
-a {
-  color: #00B7FF; }
+  height: 500px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: grid;
+  grid-template-areas: 'task  queue' 'task memory'; }
+  body .task_panel {
+    grid-area: task; }
+  body .queue_panel {
+    grid-area: queue; }
+  body .memory_panel {
+    grid-area: memory; }
 
 /*# sourceMappingURL=style.css.map */
