@@ -1,12 +1,18 @@
 body
-    height: 500px
+    height: 800px
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
     display: grid
     grid-template-areas: 'task  queue' 'task memory'
     .task_panel
         grid-area: task
+        .task_cvs
+            width: 100%
     .queue_panel
         grid-area: queue
+        .queue_cvs
+            width: 100%
     .memory_panel
         grid-area: memory
+        .memory_cvs
+            width: 100%
 

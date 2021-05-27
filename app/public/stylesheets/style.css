@@ -1,13 +1,19 @@
 body {
-  height: 500px;
+  height: 800px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: grid;
   grid-template-areas: 'task  queue' 'task memory'; }
   body .task_panel {
     grid-area: task; }
+    body .task_panel .task_cvs {
+      width: 100%; }
   body .queue_panel {
     grid-area: queue; }
+    body .queue_panel .queue_cvs {
+      width: 100%; }
   body .memory_panel {
     grid-area: memory; }
+    body .memory_panel .memory_cvs {
+      width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
