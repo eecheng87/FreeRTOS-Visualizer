@@ -3,12 +3,6 @@ name=taskA;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskB;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskC;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskD;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskE;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskF;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskC;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskD;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskE;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskF;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskF;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskF;stack=0x123456789;topofstack=0x987654321;priority=4
 name=taskF;stack=0x123456789;topofstack=0x987654321;priority=4
@@ -16,7 +10,7 @@ name=taskA;stack=0x123456789;topofstack=0x987654321;priority=3
 name=taskB;stack=0x123456789;topofstack=0x987654321;priority=3
 name=taskC;stack=0x123456789;topofstack=0x987654321;priority=3
 x
-name=taskA;stack=0x123456789;topofstack=0x987654321;priority=4
-name=taskB;stack=0x123456789;topofstack=0x987654321;priority=3
-name=taskC;stack=0x123456789;topofstack=0x987654321;priority=3
+name=taskA;stack=0x123456789;topofstack=0x987654321;priority=2
+name=taskB;stack=0x123456789;topofstack=0x987654321;priority=2
+name=taskC;stack=0x123456789;topofstack=0x987654321;priority=2
 0
