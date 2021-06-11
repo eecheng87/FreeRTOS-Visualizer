@@ -5393,3 +5393,57 @@ static void prvAddCurrentTaskToDelayedList( TickType_t xTicksToWait,
     #endif
 
 #endif /* if ( configINCLUDE_FREERTOS_TASK_C_ADDITIONS_H == 1 ) */
+
+#include <stdio.h>
+#include <string.h>
+#define listGET_ITEM_OF_HEAD_ENTRY(pxList) ((&((pxList)->xListEnd))->pxNext)
+
+int findex = 0;
+void TaskMonitor(void *para){
+	FILE *fp;
+	int prio, it;
+	int maxprio = 5;
+	tskTCB *tmp_tcb;
+	ListItem_t *list_item;
+	char fname[30];
+	char string[100];
+	sprintf(fname, "../app/public/dump/task/%d.txt", findex);
+	findex = (findex < 5) ? findex + 1 : 0;
+	fp = fopen(fname, "w");
+	fwrite("0\n", 1, 2, fp);
+	for(prio = maxprio; prio >= 0; prio--){
+		list_item = NULL;
+		tmp_tcb = NULL;
+		memset(string, 0, sizeof(string));
+		if(listLIST_IS_EMPTY(&(pxReadyTasksLists[prio])))
+			continue;
+		for(it = 0; it < listCURRENT_LIST_LENGTH(&(pxReadyTasksLists[prio])); it++){
+			if(!list_item)
+				list_item = listGET_ITEM_OF_HEAD_ENTRY(&(pxReadyTasksLists[prio]));
+			tmp_tcb = list_item->pvOwner;
+			sprintf(string, "name=%s;stack=0x%09x;topofstack=0x%09x;priority=%d\n",
+				tmp_tcb->pcTaskName, tmp_tcb->pxStack,
+				tmp_tcb->pxTopOfStack, prio);
+			fwrite(string, 1, strlen(string), fp);
+			list_item = list_item->pxNext;
+		}
+	}
+	fwrite("x\n", 1, 2, fp);
+	List_t *li = pxDelayedTaskList;
+	list_item = NULL;
+	for(it = 0; it < li->uxNumberOfItems; it++){
+		memset(string, 0, sizeof(string));
+		if(!list_item)
+			list_item = listGET_ITEM_OF_HEAD_ENTRY(pxDelayedTaskList);
+		tmp_tcb = list_item->pvOwner;
+		sprintf(string, "name=%s;stack=0x%09x;topofstack=0x%09x;priority=%d\n",
+                                tmp_tcb->pcTaskName, tmp_tcb->pxStack,
+                                tmp_tcb->pxTopOfStack, prio);
+		list_item = list_item->pxNext;
+		fwrite(string, 1, strlen(string), fp);
+	}
+	fwrite("0\n", 1, 2, fp);
+	fclose(fp);
+}
+
+
