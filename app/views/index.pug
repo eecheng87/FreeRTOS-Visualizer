@@ -1,12 +1,46 @@
 extends layout
 
 block content
-    div.task_panel
-        canvas.task_cvs
-    div.queue_panel
-        canvas.queue_cvs
-    div.memory_panel
-        canvas.memory_cvs
+    div.main_container
+        div.task_panel
+            canvas.task_cvs
+        div.queue_panel
+            canvas.queue_cvs
+        div.memory_panel
+            canvas.memory_cvs
+    div.help_panel
+    div.config_panel
+        div.config_title 
+            div
+            div(style='margin:10px') Configuration
+            div
+        div.border_color 
+            div
+            div border&nbspcolor
+            div
+            input(type='color' id='bordercolor')
+            div
+        div.line_color 
+            div
+            div arrow&nbspcolor
+            div
+            input(type='color' id='linecolor')
+            div
+        div.taskbody_color 
+            div
+            div(style='font-size: 15px') task&nbspbody color
+            div
+            input(type='color' id='taskbodycolor')
+            div
+        div.taskinner_color 
+            div
+            div(style='font-size: 15px')  inner&nbsptask body&nbspcolor
+            div
+            input(type='color' id='taskinnercolor')
+            div
+        div.confirm
+            div.apply_button(style='margin:10px') Apply
+            div.cancel_button(style='margin:10px') Cancel
     script(src='javascripts/paint.js')
     script(src='javascripts/logic.js')
     script(src='javascripts/task_visualize.js')

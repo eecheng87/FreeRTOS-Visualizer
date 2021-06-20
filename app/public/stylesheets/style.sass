@@ -1,19 +1,51 @@
 body
-    height: 1000px
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
-    background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-    display: grid
-    grid-template-areas: 'task  queue' 'task memory'
-    .task_panel
-        grid-area: task
-        .task_cvs
+    margin: 0
+    padding: 0
+    .main_container
+        width: 100%
+        height: 1000px
+        position: relative
+        font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+        background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+        display: grid
+        grid-template-areas: 'task  queue' 'task memory'
+        .task_panel
+            grid-area: task
+            .task_cvs
+                width: 100%
+        .queue_panel
+            grid-area: queue
+            .queue_cvs
+                width: 100%
+        .memory_panel
+            grid-area: memory
+            .memory_cvs
+                width: 100%
+    .config_panel
+        display: none
+        border-radius: 30px;
+        color: white
+        text-align: center
+        position: absolute
+        background-color: #181515
+        height: 400px
+        width: 30%
+        top: 100px
+        left: 35%
+        z-index: 10
+        div
             width: 100%
-    .queue_panel
-        grid-area: queue
-        .queue_cvs
-            width: 100%
-    .memory_panel
-        grid-area: memory
-        .memory_cvs
-            width: 100%
+            height: 15%
+            display: inline-flex
+            div
+                line-height: 20px
+                display: inline-table
+            input
+                text-align: center
+                width: 40%
+                margin: 5px
+                display: inline-table
+        .confirm
+            div:hover
+                color: #C0B0B0
 

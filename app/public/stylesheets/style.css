@@ -1,20 +1,51 @@
 body {
-  height: 1000px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-  display: grid;
-  grid-template-areas: 'task  queue' 'task memory'; }
-  body .task_panel {
-    grid-area: task; }
-    body .task_panel .task_cvs {
-      width: 100%; }
-  body .queue_panel {
-    grid-area: queue; }
-    body .queue_panel .queue_cvs {
-      width: 100%; }
-  body .memory_panel {
-    grid-area: memory; }
-    body .memory_panel .memory_cvs {
-      width: 100%; }
+  margin: 0;
+  padding: 0; }
+  body .main_container {
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    display: grid;
+    grid-template-areas: 'task  queue' 'task memory'; }
+    body .main_container .task_panel {
+      grid-area: task; }
+      body .main_container .task_panel .task_cvs {
+        width: 100%; }
+    body .main_container .queue_panel {
+      grid-area: queue; }
+      body .main_container .queue_panel .queue_cvs {
+        width: 100%; }
+    body .main_container .memory_panel {
+      grid-area: memory; }
+      body .main_container .memory_panel .memory_cvs {
+        width: 100%; }
+  body .config_panel {
+    display: none;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    background-color: #181515;
+    height: 400px;
+    width: 30%;
+    top: 100px;
+    left: 35%;
+    z-index: 10; }
+    body .config_panel div {
+      width: 100%;
+      height: 15%;
+      display: inline-flex; }
+      body .config_panel div div {
+        line-height: 20px;
+        display: inline-table; }
+      body .config_panel div input {
+        text-align: center;
+        width: 40%;
+        margin: 5px;
+        display: inline-table; }
+    body .config_panel .confirm div:hover {
+      color: #C0B0B0; }
 
 /*# sourceMappingURL=style.css.map */
