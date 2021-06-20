@@ -1,4 +1,5 @@
-{
+// default
+var timer_run = true; {
     let node_body_color = '#33BBFF';
     let node_inner_color = '#5894D7';
 
@@ -122,6 +123,20 @@
                 conf.style.display = 'none';
             } else {
                 conf.style.display = 'block';
+            }
+        } else if (code === 'KeyP') {
+            if (timer_run) {
+                console.log('Stop updater');
+                clearInterval(task_clock);
+                //clearInterval(mem_clock);
+                //clearInterval(q_clock);
+                timer_run = false;
+            } else {
+                console.log('Resume updater');
+                setInterval(task_updater, 1000);
+                setInterval(mem_updater, 1000);
+                setInterval(q_updater, 1000);
+                timer_run = true;
             }
         }
     }, false);

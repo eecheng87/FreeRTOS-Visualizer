@@ -1,4 +1,7 @@
 /* function to visualize tasks */
+var task_clock;
+var task_updater;
+
 {
     let canv = document.querySelector('.task_cvs');
     let ctx = canv.getContext('2d');
@@ -24,8 +27,6 @@
             x_off, cvs_x_bound, x_off);
         info_file_index = info_file_index == info_file_limit ? 1 : info_file_index + 1;
     }
-
-    let clock = setInterval(updater, 1000);
-
-
+    task_updater = updater;
+    task_clock = setInterval(updater, 1000);
 }
