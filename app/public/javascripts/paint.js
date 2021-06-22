@@ -2,7 +2,9 @@
 var color_meta = {
     arrow_color: "#000000",
     border_color: "#FFFFFF"
-}; {
+};
+
+{
 
 
     function draw_text(ctx, x, y, text, font, color, align) {
@@ -19,7 +21,7 @@ var color_meta = {
     }
 
     function draw_vline(ctx, fromx, fromy, h, color) {
-        draw_line(ctx, fromx, fromy, fromx, fromy+h, color);
+        draw_line(ctx, fromx, fromy, fromx, fromy + h, color);
     }
 
     function draw_hline(ctx, fromx, fromy, w, color) {

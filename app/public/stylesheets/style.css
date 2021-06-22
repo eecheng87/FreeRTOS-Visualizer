@@ -8,15 +8,15 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
     display: grid;
-    grid-template-areas: 'task  queue' 'task memory' 'task memory';
-    grid-template-rows: [queue] 10% [memory] 90%; }
+    grid-template-areas: 'task  flist' 'task memory';
+    grid-template-rows: [queue] 35% [memory] 65%; }
     body .main_container .task_panel {
       grid-area: task; }
       body .main_container .task_panel .task_cvs {
         width: 100%; }
-    body .main_container .queue_panel {
-      grid-area: queue; }
-      body .main_container .queue_panel .queue_cvs {
+    body .main_container .flist_panel {
+      grid-area: flist; }
+      body .main_container .flist_panel .flist {
         width: 100%; }
     body .main_container .memory_panel {
       grid-area: memory; }

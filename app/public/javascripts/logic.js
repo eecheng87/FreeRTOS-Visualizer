@@ -1,5 +1,7 @@
 // default
-var timer_run = true; {
+var timer_run = true;
+
+{
     let node_body_color = '#33BBFF';
     let node_inner_color = '#5894D7';
 
@@ -23,6 +25,9 @@ var timer_run = true; {
             zero = 0;
         let lines = info.split("\n");
         lines.forEach(line => {
+            if (line.length < 1) {
+                return;
+            }
             if (line[0] == '0') {
                 zero += 1;
                 return;
@@ -34,6 +39,9 @@ var timer_run = true; {
             obj = new Object();
             items = line.split(";");
             items.forEach(item => {
+                /* filter */
+                if (item.split("=")[0] == "heapSTRUCT_SIZE")
+                    return;
                 obj[item.split("=")[0]] = item.split("=")[1];
             });
             filed = meta[meta_index].push(obj);
@@ -44,7 +52,7 @@ var timer_run = true; {
         let f_h = 30,
             f_w = w,
             y_span = 5;
-        ctx.font = '10px Consolas';
+        ctx.font = '12px Consolas';
 
         for (let attr in node) {
             draw_node(ctx, x, y, f_w, f_h, attr_color);
@@ -58,7 +66,7 @@ var timer_run = true; {
     function visualize_mem_meta(meta, ctx) {
         let mem_block_w = ctx.canvas.width * 0.6;
         let mem_block_h = ctx.canvas.height * 0.6;
-        let mem_left_margin ,mem_right_margin, mem_top_margin, mem_bottom_margin;
+        let mem_left_margin, mem_right_margin, mem_top_margin, mem_bottom_margin;
         mem_left_margin = mem_right_margin = ctx.canvas.width * 0.2;
         mem_top_margin = mem_bottom_margin = ctx.canvas.height * 0.1;
 
@@ -73,27 +81,29 @@ var timer_run = true; {
 
         draw_block(ctx, mem_block_x, mem_block_y, mem_block_w, mem_block_h, node_body_color, color_meta.border_color);
 
-        let address_space = parseInt(meta[meta.length-1].topofstack, 16) - parseInt(meta[0].stack, 16);
+        let address_space = parseInt(meta[meta.length - 1].topofstack, 16) - parseInt(meta[0].stack, 16);
         let unit = stacks_block_h / address_space;
         let stacks_ptr = {
-            x : stack_org_x, y : stack_org_y,
-            last_ptr : data[0].stack
+            x: stack_org_x,
+            y: stack_org_y,
+            last_ptr: data[0].stack
         };
 
-        let seed = getRandomInt(0, hexCode.length-1);
-        meta.forEach(({name, stack, topofstack, priority}, i, arr) => {
+        let seed = getRandomInt(0, hexCode.length - 1);
+        meta.forEach(({ name, stack, topofstack, priority }, i, arr) => {
             let x = stacks_ptr.x;
             let y = stacks_ptr.y + (parseInt(stack, 16) - stacks_ptr.last_ptr) * unit;
             let stack_w = stacks_block_w;
-            let stack_h = (parseInt(topofstack,16) - parseInt(stack, 16)) * unit;
+            let stack_h = (parseInt(topofstack, 16) - parseInt(stack, 16)) * unit;
             ctx.fillStyle = hexCode[seed + i].code.hex;
             draw_roundRect(ctx, x, y, stack_w, stack_h, 0, true, true)
-            draw_text(ctx, x-2, y, stack, '15px Consolas', undefined, 'right');
-            draw_text(ctx, x-2, y + stack_h, topofstack, '15px Consolas', undefined, 'right')
-            draw_text(ctx, x + stack_w/2, y + stack_h/2, name, '15px Consolas', undefined , 'center')
+            draw_text(ctx, x - 2, y, stack, '15px Consolas', undefined, 'right');
+            draw_text(ctx, x - 2, y + stack_h, topofstack, '15px Consolas', undefined, 'right')
+            draw_text(ctx, x + stack_w / 2, y + stack_h / 2, name, '15px Consolas', undefined, 'center')
             stacks_ptr = {
-                x : stacks_ptr.x, y : y + stack_h,
-                last_ptr : parseInt(topofstack, 16)
+                x: stacks_ptr.x,
+                y: y + stack_h,
+                last_ptr: parseInt(topofstack, 16)
             }
         })
     }
@@ -155,6 +165,83 @@ var timer_run = true; {
         });
     }
 
+    function visualize_flist_meta(metas, ctx, x, y, x_bound, x_off) {
+        let node_w = 100,
+            node_h = 110;
+        let node_span_w = 20,
+            node_span_h = 30;
+        let info_x_off = 5,
+            info_y_off = 5;
+        let direction = 1,
+            cur_idx = 0;
+        let meta = metas[1];
+        let node_color = "#8BA18D";
+        let attr_color = "#BAD5BC";
+
+        let used_size = parseInt(metas[0][0]["totalHeapSize"]) - parseInt(metas[0][0]["xFreeBytesRemaining"]);
+        let remain_size = parseInt(metas[0][0]["xFreeBytesRemaining"]);
+
+        let used_color = "#33BBFF";
+        let remain_color = "#8BA18D";
+
+        let sum_len = 400,
+            sum_height = 30;
+        let use_w = sum_len * used_size / (remain_size + used_size);
+        let remain_w = sum_len * remain_size / (remain_size + used_size);
+
+        /* draw summary */
+        draw_node(ctx, x, y, use_w, sum_height, used_color);
+        draw_node(ctx, x + use_w, y, remain_w, sum_height, remain_color);
+
+        /* show figure on larger part */
+        let font_start, pro;
+        if (use_w < remain_w) {
+            font_start = use_w;
+            pro = Math.round(remain_w * 100 / (remain_w + use_w));
+        } else {
+            font_start = x;
+            pro = Math.round(use_w * 100 / (remain_w + use_w));
+        }
+        ctx.font = '12px Consolas';
+        ctx.fillStyle = '#000000';
+        ctx.textAlign = 'center';
+        ctx.fillText(pro.toString() + '%', font_start + sum_len / 2, y + sum_height / 2);
+
+
+        y += sum_height + 20;
+        /* draw detail */
+        meta.forEach(node => {
+            if (!(x + node_w * direction < x_bound) || !(x >= 0)) {
+                x -= ((node_w + node_span_w) * direction);
+                direction *= -1;
+                y += (node_h + node_span_h);
+                /* connect vertical */
+                draw_arrow(ctx, x + node_w / 2, y - node_span_h,
+                    x + node_w / 2, y);
+                cur_idx = 0;
+            }
+            /* draw container of task */
+            draw_node(ctx, x, y, node_w, node_h, node_color);
+
+            /* connect node */
+            if (cur_idx != 0) {
+                if (direction > 0)
+                    draw_arrow(ctx, x - node_span_w,
+                        y + 20, x, y + 20);
+                else
+                    draw_arrow(ctx, x + node_span_w + node_w, y + 20,
+                        x + node_w, y + 20);
+            }
+            cur_idx += 1;
+
+            /* draw detail of per task */
+            visualize_task(ctx, node, x + info_x_off, y + info_y_off, node_w - 2 * info_x_off, attr_color);
+
+            /* update x */
+            x += ((node_w + node_span_w) * direction);
+        });
+    }
+
     // key event handling
     document.addEventListener('keypress', (event) => {
         let name = event.key;
@@ -174,13 +261,13 @@ var timer_run = true; {
                 console.log('Stop updater');
                 clearInterval(task_clock);
                 clearInterval(mem_clock)
-                //clearInterval(q_clock);
+                clearInterval(fl_clock);
                 timer_run = false;
             } else {
                 console.log('Resume updater');
                 task_clock = setInterval(task_updater, 1000);
                 mem_clock = setInterval(mem_updater, 1000);
-                // setInterval(q_updater, 1000);
+                fl_clock = setInterval(fl_updater, 1000);
                 timer_run = true;
             }
         }

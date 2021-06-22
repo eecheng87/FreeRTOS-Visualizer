@@ -8,15 +8,15 @@ body
         font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
         background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
         display: grid
-        grid-template-areas: 'task  queue' 'task memory' 'task memory'
-        grid-template-rows: [queue] 10% [memory] 90%
+        grid-template-areas: 'task  flist' 'task memory'
+        grid-template-rows: [queue] 35% [memory] 65%
         .task_panel
             grid-area: task
             .task_cvs
                 width: 100%
-        .queue_panel
-            grid-area: queue
-            .queue_cvs
+        .flist_panel
+            grid-area: flist
+            .flist
                 width: 100%
         .memory_panel
             grid-area: memory
