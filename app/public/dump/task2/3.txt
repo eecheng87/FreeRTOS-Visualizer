@@ -3,6 +3,6 @@ name=TaskMointor;stack=0x5660fc90;topofstack=0x5660fe7c;priority=0
 name=IDLE;stack=0x5660ff18;topofstack=0x56610014;priority=0
 x
 name=GreenLEDTas;stack=0x5660f660;topofstack=0x5660f84c;priority=0
-name=RedLEDTask;stack=0x5660f210;topofstack=0x5660f384;priority=0
+name=RedLEDTask;stack=0x5660f310;topofstack=0x5660f384;priority=0
 name=PrintTask;stack=0x5660fa08;topofstack=0x5660fbf4;priority=0
 0

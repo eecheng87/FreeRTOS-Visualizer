@@ -95,7 +95,8 @@ var timer_run = true;
             let y = stacks_ptr.y + (parseInt(stack, 16) - stacks_ptr.last_ptr) * unit;
             let stack_w = stacks_block_w;
             let stack_h = (parseInt(topofstack, 16) - parseInt(stack, 16)) * unit;
-            ctx.fillStyle = hexCode[seed + i].code.hex;
+            /* color of node is followed config */
+            ctx.fillStyle = node_inner_color /*hexCode[seed + i].code.hex*/ ;
             draw_roundRect(ctx, x, y, stack_w, stack_h, 0, true, true)
             draw_text(ctx, x - 2, y, stack, '15px Consolas', undefined, 'right');
             draw_text(ctx, x - 2, y + stack_h, topofstack, '15px Consolas', undefined, 'right')
@@ -181,7 +182,7 @@ var timer_run = true;
         let used_size = parseInt(metas[0][0]["totalHeapSize"]) - parseInt(metas[0][0]["xFreeBytesRemaining"]);
         let remain_size = parseInt(metas[0][0]["xFreeBytesRemaining"]);
 
-        let used_color = "#33BBFF";
+        let used_color = node_body_color;
         let remain_color = "#8BA18D";
 
         let sum_len = 400,
