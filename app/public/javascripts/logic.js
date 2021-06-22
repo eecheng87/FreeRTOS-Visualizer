@@ -5,6 +5,19 @@ var timer_run = true;
     let node_body_color = '#33BBFF';
     let node_inner_color = '#5894D7';
 
+    function hexToRgbR(hex, seed) {
+        /* smooth random version */
+        let bigint = parseInt(hex.substring(1), 16);
+        let r = (bigint >> 16) & 255;
+        let g = (bigint >> 8) & 255;
+        let b = bigint & 255;
+
+        r += (seed % 60 + 10);
+        b += (seed % 60);
+
+        return "(" + r + "," + g + "," + b + ")";
+    }
+
     function readTextFile(file) {
         let rawFile = new XMLHttpRequest();
         let allText;
@@ -96,7 +109,8 @@ var timer_run = true;
             let stack_w = stacks_block_w;
             let stack_h = (parseInt(topofstack, 16) - parseInt(stack, 16)) * unit;
             /* color of node is followed config */
-            ctx.fillStyle = node_inner_color /*hexCode[seed + i].code.hex*/ ;
+            ctx.fillStyle = "rgb".concat(hexToRgbR(node_inner_color, seed));
+
             draw_roundRect(ctx, x, y, stack_w, stack_h, 0, true, true)
             draw_text(ctx, x - 2, y, stack, '15px Consolas', undefined, 'right');
             draw_text(ctx, x - 2, y + stack_h, topofstack, '15px Consolas', undefined, 'right')
