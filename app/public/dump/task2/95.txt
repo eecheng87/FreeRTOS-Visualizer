@@ -1,0 +1,8 @@
+0
+name=TaskMointor;stack=0x5660bc90;topofstack=0x5660be7c;priority=0
+name=IDLE;stack=0x5660bf18;topofstack=0x5660c014;priority=0
+x
+name=RedLEDTask;stack=0x5660b210;topofstack=0x5660b384;priority=0
+name=PrintTask;stack=0x5660ba08;topofstack=0x5660bbf4;priority=0
+name=GreenLEDTas;stack=0x5660b660;topofstack=0x5660b84c;priority=0
+0

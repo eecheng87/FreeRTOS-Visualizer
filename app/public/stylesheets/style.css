@@ -8,7 +8,8 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background: repeating-linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
     display: grid;
-    grid-template-areas: 'task  queue' 'task memory'; }
+    grid-template-areas: 'task  queue' 'task memory' 'task memory';
+    grid-template-rows: [queue] 10% [memory] 90%; }
     body .main_container .task_panel {
       grid-area: task; }
       body .main_container .task_panel .task_cvs {

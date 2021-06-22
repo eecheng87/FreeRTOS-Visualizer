@@ -55,6 +55,51 @@ var timer_run = true; {
         }
     }
 
+    function visualize_mem_meta(meta, ctx) {
+        let mem_block_w = ctx.canvas.width * 0.6;
+        let mem_block_h = ctx.canvas.height * 0.6;
+        let mem_left_margin ,mem_right_margin, mem_top_margin, mem_bottom_margin;
+        mem_left_margin = mem_right_margin = ctx.canvas.width * 0.2;
+        mem_top_margin = mem_bottom_margin = ctx.canvas.height * 0.1;
+
+        let mem_block_x, mem_block_y;
+        mem_block_x = mem_left_margin;
+        mem_block_y = mem_top_margin;
+
+        let stack_org_x = mem_block_x;
+        let stack_org_y = mem_block_y + 10; // in px
+        let stacks_block_w = mem_block_w;
+        let stacks_block_h = mem_block_h - 10 * 2;
+
+        draw_block(ctx, mem_block_x, mem_block_y, mem_block_w, mem_block_h, node_body_color, color_meta.border_color);
+
+        let address_space = parseInt(meta[meta.length-1].topofstack, 16) - parseInt(meta[0].stack, 16);
+        let unit = stacks_block_h / address_space;
+        let stacks_ptr = {
+            x : stack_org_x, y : stack_org_y,
+            last_ptr : data[0].stack
+        };
+
+        let seed = getRandomInt(0, hexCode.length-1);
+        meta.forEach(({name, stack, topofstack, priority}, i, arr) => {
+            let x = stacks_ptr.x;
+            let y = stacks_ptr.y + (parseInt(stack, 16) - stacks_ptr.last_ptr) * unit;
+            let stack_w = stacks_block_w;
+            let stack_h = (parseInt(topofstack,16) - parseInt(stack, 16)) * unit;
+            ctx.fillStyle = hexCode[seed + i].code.hex;
+            draw_roundRect(ctx, x, y, stack_w, stack_h, 0, true, true)
+            draw_text(ctx, x-2, y, stack, '15px Consolas', undefined, 'right');
+            draw_text(ctx, x-2, y + stack_h, topofstack, '15px Consolas', undefined, 'right')
+            draw_text(ctx, x + stack_w/2, y + stack_h/2, name, '15px Consolas', undefined , 'center')
+            stacks_ptr = {
+                x : stacks_ptr.x, y : y + stack_h,
+                last_ptr : parseInt(topofstack, 16)
+            }
+        })
+    }
+
+
+
     function visualize_task_meta(metas, ctx, x, y, x_bound, x_off) {
         let node_w = 100,
             node_h = 150;
@@ -128,14 +173,14 @@ var timer_run = true; {
             if (timer_run) {
                 console.log('Stop updater');
                 clearInterval(task_clock);
-                //clearInterval(mem_clock);
+                clearInterval(mem_clock)
                 //clearInterval(q_clock);
                 timer_run = false;
             } else {
                 console.log('Resume updater');
-                setInterval(task_updater, 1000);
-                setInterval(mem_updater, 1000);
-                setInterval(q_updater, 1000);
+                task_clock = setInterval(task_updater, 1000);
+                mem_clock = setInterval(mem_updater, 1000);
+                // setInterval(q_updater, 1000);
                 timer_run = true;
             }
         }

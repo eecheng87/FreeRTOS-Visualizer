@@ -3,6 +3,38 @@ var color_meta = {
     arrow_color: "#000000",
     border_color: "#FFFFFF"
 }; {
+
+
+    function draw_text(ctx, x, y, text, font, color, align) {
+        ctx.font = font || '10px Consolas';
+        ctx.fillStyle = color || '#000000';
+        ctx.textAlign = align || 'center';
+        ctx.fillText(text, x, y);
+    }
+
+    function draw_block(ctx, x, y, w, h, color, border_color) {
+        ctx.fillStyle = color
+        ctx.strokeStyle = border_color || color_meta.border_color
+        draw_roundRect(ctx, x, y, w, h, undefined, true, true)
+    }
+
+    function draw_vline(ctx, fromx, fromy, h, color) {
+        draw_line(ctx, fromx, fromy, fromx, fromy+h, color);
+    }
+
+    function draw_hline(ctx, fromx, fromy, w, color) {
+        draw_line(ctx, fromx, fromy, fromx + w, fromy, color);
+    }
+
+    function draw_line(ctx, fromx, fromy, tox, toy, color) {
+        ctx.strokeStyle = color || color_meta.line_color;
+        ctx.beginPath();
+        ctx.moveTo(fromx, fromy);
+        ctx.lineTo(tox, toy);
+        ctx.stroke();
+    }
+
+
     /* fondamental painting function */
     function draw_node(ctx, x, y, w, h, color) {
         ctx.fillStyle = color;
@@ -77,4 +109,5 @@ var color_meta = {
         }
 
     }
+
 }

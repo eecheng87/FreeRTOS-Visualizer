@@ -8,13 +8,33 @@ var mem_updater;
     let cvs_origin_x = canv.getBoundingClientRect().left;
     let cvs_origin_y = canv.getBoundingClientRect().top;
 
+    let info_file_index = 1,
+        info_file_limit = 4;
+
     ctx.canvas.width = canv.parentElement.clientWidth;
     ctx.canvas.height = canv.parentElement.clientHeight;
 
-    /*function updater(){
 
+    function updater() {
+
+        let meta = [
+            [],
+            []
+        ]
+        let info = readTextFile("dump/task2/" + info_file_index.toString() + ".txt")
+        parse_task_meta(meta, info);
+        data = meta[0].concat(meta[1]);
+        data = data.filter( ele => ele != undefined || ele != null);
+        data.sort((a, b) => {
+            let diff = a.stack - b.stack;
+            return (diff) == 0 ? 0 :
+                    (diff > 0) ? 1 : -1;
+        })
+        ctx.clearRect(0, 0, canv.getBoundingClientRect().right, canv.getBoundingClientRect().bottom);
+        visualize_mem_meta(data, ctx)
     }
-    // also be controled in `logic.js`
-    mem_updater = updater;
-    mem_clock = setInterval(updater, 1000);*/
+
+    mem_updater = updater
+    mem_clock = setInterval(updater, 1000)
+
 }
