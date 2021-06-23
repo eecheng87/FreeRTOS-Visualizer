@@ -139,6 +139,12 @@ var timer_run = true;
         metas.forEach((meta, index) => {
             let node_color = index == 0 ? node_body_color : '#E5005F';
             let attr_color = index == 0 ? node_inner_color : '#E86292';
+            if (index == 1) {
+                x = x_off;
+                y += (node_h + node_span_h);
+                direction = 1;
+                cur_idx = 0;
+            }
             meta.forEach(node => {
                 cur_pri = (cur_pri != "-1") ? cur_pri : node["priority"];
                 if (cur_pri != node["priority"]) {
