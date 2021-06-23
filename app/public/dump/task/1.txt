@@ -1,9 +1,0 @@
-0
-name=Monitor;stack=0x0565ad828;topofstack=0x0565ad924;priority=3
-name=T4;stack=0x0565ad6a0;topofstack=0x0565ad79c;priority=1
-name=IDLE;stack=0x0565ad9b0;topofstack=0x0565adaac;priority=0
-x
-name=T2;stack=0x0565ad390;topofstack=0x0565ad48c;priority=-1
-name=T1;stack=0x0565ad208;topofstack=0x0565ad304;priority=-1
-name=T3;stack=0x0565ad518;topofstack=0x0565ad614;priority=-1
-0

@@ -1,0 +1,11 @@
+0
+totalHeapSize=66552;xFreeBytesRemaining=60800
+x
+startAddress=0x565d1aa0;heapSTRUCT_SIZE=8;xBlockSize=112;endAddress=0x565d1b10
+startAddress=0x565d16c8;heapSTRUCT_SIZE=8;xBlockSize=112;endAddress=0x565d1738
+startAddress=0x565d1438;heapSTRUCT_SIZE=8;xBlockSize=112;endAddress=0x565d14a8
+startAddress=0x565d19c8;heapSTRUCT_SIZE=8;xBlockSize=216;endAddress=0x565d1aa0
+startAddress=0x565d15f0;heapSTRUCT_SIZE=8;xBlockSize=216;endAddress=0x565d16c8
+startAddress=0x565d1360;heapSTRUCT_SIZE=8;xBlockSize=216;endAddress=0x565d1438
+startAddress=0x565d1c58;heapSTRUCT_SIZE=8;xBlockSize=59816;endAddress=0x565e0600
+0

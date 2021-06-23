@@ -1,0 +1,5 @@
+0
+totalHeapSize=66552;xFreeBytesRemaining=60144
+x
+startAddress=0x56650a78;heapSTRUCT_SIZE=8;xBlockSize=48008;endAddress=0x5665c600
+0

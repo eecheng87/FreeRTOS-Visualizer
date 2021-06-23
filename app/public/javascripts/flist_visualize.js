@@ -7,11 +7,12 @@ var fl_updater;
     let ctx = canv.getContext('2d');
     let cvs_origin_x = canv.getBoundingClientRect().left;
     let cvs_origin_y = canv.getBoundingClientRect().top;
+    let root_dir = config.log_dir
 
     ctx.canvas.width = canv.parentElement.clientWidth;
     ctx.canvas.height = canv.parentElement.clientHeight;
-    let info_file_index = 0,
-        info_file_limit = 2;
+    let info_file_index = config.info_file_index,
+        info_file_limit = config.info_file_limit;
 
     function updater() {
         let meta = [
@@ -19,7 +20,8 @@ var fl_updater;
             []
         ];
         // 0: info summ. 1: detail of free block
-        let info = readTextFile("spec/heap/" + info_file_index.toString() + ".txt");
+        // let info = readTextFile("spec/heap/" + info_file_index.toString() + ".txt");
+        let info = readTextFile(`${root_dir}/heap/${info_file_index.toString()}.txt`);
         ctx.clearRect(0, 0, canv.getBoundingClientRect().right, canv.getBoundingClientRect().bottom);
         parse_task_meta(meta, info);
         visualize_flist_meta(meta, ctx, 40,

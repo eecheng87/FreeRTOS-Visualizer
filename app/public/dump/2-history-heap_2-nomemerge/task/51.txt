@@ -1,0 +1,9 @@
+0
+name=TaskMointor;stack=0x5663c720;topofstack=0x5663c90c;priority=0
+name=IDLE;stack=0x5663c9a8;topofstack=0x5663caa4;priority=0
+x
+name=Task_CreDel;stack=0x5663c210;topofstack=0x5663c3fc;priority=0
+name=PrintTask;stack=0x5663c498;topofstack=0x5663c684;priority=0
+name=Task1;stack=0x5663db18;topofstack=0x5663dbc4;priority=0
+name=Task2;stack=0x5663d5f8;topofstack=0x5663d6a4;priority=0
+0

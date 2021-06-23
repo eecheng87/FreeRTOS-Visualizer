@@ -1,0 +1,14 @@
+0
+name=TaskMointor;stack=0x5663c720;topofstack=0x5663c90c;priority=0
+name=IDLE;stack=0x5663c9a8;topofstack=0x5663caa4;priority=0
+x
+name=Task_CreDel;stack=0x5663c210;topofstack=0x5663c3fc;priority=0
+name=Task1;stack=0x5663d5f8;topofstack=0x5663d6a4;priority=0
+name=Task2;stack=0x5663db18;topofstack=0x5663dbc4;priority=0
+name=Task3;stack=0x5663d0d8;topofstack=0x5663d184;priority=0
+name=Task4;stack=0x5663cf90;topofstack=0x5663d03c;priority=0
+name=Task5;stack=0x5663d9d0;topofstack=0x5663da7c;priority=0
+name=Task6;stack=0x5663d368;topofstack=0x5663d414;priority=0
+name=Task7;stack=0x5663d220;topofstack=0x5663d2cc;priority=0
+name=PrintTask;stack=0x5663c498;topofstack=0x5663c684;priority=0
+0

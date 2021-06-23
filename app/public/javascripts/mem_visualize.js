@@ -7,9 +7,10 @@ var mem_updater;
     let ctx = canv.getContext('2d');
     let cvs_origin_x = canv.getBoundingClientRect().left;
     let cvs_origin_y = canv.getBoundingClientRect().top;
+    let root_dir = config.log_dir
 
-    let info_file_index = 1,
-        info_file_limit = 4;
+    let info_file_index = config.info_file_index,
+        info_file_limit = config.info_file_limit;
 
     ctx.canvas.width = canv.parentElement.clientWidth;
     ctx.canvas.height = canv.parentElement.clientHeight;
@@ -21,7 +22,7 @@ var mem_updater;
             [],
             []
         ]
-        let info = readTextFile("dump/task2/" + info_file_index.toString() + ".txt")
+        let info = readTextFile(`${root_dir}/task/${info_file_index.toString()}.txt`);
         parse_task_meta(meta, info);
         data = meta[0].concat(meta[1]);
         data = data.filter(ele => ele != undefined || ele != null);
