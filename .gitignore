@@ -53,3 +53,6 @@ dkms.conf
 
 # Ignore node package
 app/node_modules/**
+
+# Ignore .DS
+.DS_Store
